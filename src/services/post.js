@@ -3,7 +3,6 @@ import { postModel } from "../models/post.model.js";
 import HttpError from "../shared/htttp.error.js";
 import { addPostValidation } from "../shared/validation/post.validation.js";
 
-
 // Add Post
 export const addPost = async (postData) => {
   const { error } = addPostValidation(postData);
@@ -48,4 +47,12 @@ export const displayPost = async (request) => {
 
   let posts = await postModel.paginate(query, options);
   return posts;
+};
+
+export const displayPostbyId = async (id) => {
+  // check user already
+  const post = await postModel.findOne({ _id: id }).populate("user");
+  if (!post) throw HttpError.badRequest("Invalid PostID");
+
+  return post;
 };

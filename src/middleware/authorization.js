@@ -20,21 +20,6 @@ export const userAuthorization = () => {
       } else {
         next();
       }
-
-      // if (roles) {
-      //   if (!verified.role)
-      //     return res.status(401).json("User authentication required");
-      //   let allowed = roles.includes(verified.role);
-      //   if (allowed) {
-
-      //   } else {
-      //     return res
-      //       .status(401)
-      //       .json("User not allowed to access this resource");
-      //   }
-      // } else {
-      //   throw new Error("Roles required");
-      // }
     } catch (err) {
       res.status(401).json("Invalid Token");
     }

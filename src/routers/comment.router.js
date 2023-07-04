@@ -1,8 +1,9 @@
 import express from "express";
 const commentRouter = express.Router();
 import { addComment, displayPostComment } from "../services/comment.js";
+import { userAuthorization } from "../middleware/authorization.js";
 
-commentRouter.post("/add", async (req, res, next) => {
+commentRouter.post("/add", userAuthorization(), async (req, res, next) => {
   try {
     const result = await addComment(req.body);
     res.status(200).json({
@@ -14,7 +15,7 @@ commentRouter.post("/add", async (req, res, next) => {
   }
 });
 
-commentRouter.get("/:postId", async (req, res, next) => {
+commentRouter.get("/:postId", userAuthorization(), async (req, res, next) => {
   try {
     const result = await displayPostComment(req.params.postId);
     res.status(200).json({

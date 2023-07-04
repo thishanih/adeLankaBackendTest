@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 import { PostStatus } from "../shared/constants.js";
 
-let postSchema = mongoose.Schema(
+let userSchema = mongoose.Schema(
   {
     title: {
       type: String,
@@ -29,5 +29,5 @@ let postSchema = mongoose.Schema(
   }
 );
 
-postSchema.plugin(mongoosePaginate);
-export const userModel = mongoose.model("Post", postSchema);
+userSchema.plugin(mongoosePaginate);
+export const postModel = mongoose.model("Post", userSchema);

@@ -1,7 +1,8 @@
 import express from "express";
-const postRouter = express.Router();
 import { addPost, displayPost, displayPostbyId } from "../services/post.js";
 import { userAuthorization } from "../middleware/authorization.js";
+
+const postRouter = express.Router();
 
 postRouter.post("/add", userAuthorization(), async (req, res, next) => {
   try {

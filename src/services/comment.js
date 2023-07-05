@@ -30,7 +30,7 @@ export const addComment = async (commentData) => {
 
 //////////////////////////////////////// Display Product Comment //////////////////////////
 export const displayPostComment = async (postId) => {
-  const comment = await commentsModel.find({ post: postId });
+  const comment = await commentsModel.find({ post: postId }).populate("user");
   if (!comment) throw HttpError.badRequest("Invalid PostId");
 
   return comment;
